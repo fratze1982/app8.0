@@ -37,10 +37,13 @@ rohstoff_spalten = st.multiselect(
     default=vorgeschlagene_rohstoffe
 )
 
+zielspalten_options = [s for s in alle_spalten if s not in rohstoff_spalten]
+default_zielspalten = [s for s in vorgeschlagene_zielgroessen if s in zielspalten_options]
+
 zielspalten = st.multiselect(
     "🎯 Wähle die Zielgrößen (Kennwerte)", 
-    options=[s for s in alle_spalten if s not in rohstoff_spalten],
-    default=vorgeschlagene_zielgroessen
+    options=zielspalten_options,
+    default=default_zielspalten
 )
 
 if not rohstoff_spalten or not zielspalten:
